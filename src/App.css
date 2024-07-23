@@ -1,0 +1,122 @@
+html, body {
+  background: none aquamarine;
+  height: 100%;
+  color: #0e4638;
+  line-height: 130%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  scrollbar-gutter: stable both-edges;
+  padding: 0px;
+  margin: 0px;
+}
+
+h1 {
+  display: block;
+  font-size: 140%;
+  padding: 0;
+  margin: 0;
+  align-self: center;
+  /* border: #0e4638 solid 1px; */
+}
+
+button {
+  outline: 0;
+  border: none;
+  padding: 12px 17px;
+  border-radius: 50px;
+  background-color: #2222220d;
+  height: 50px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+button:hover {
+  background-color: #2222221a;
+}
+
+.button_round {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+input {
+  box-sizing: border-box;
+  font-size: 100%;
+  vertical-align: baseline;
+  font-weight: 400;
+  line-height: 1.29;
+  letter-spacing: .16px;
+  height: 40px;
+  border: none;
+  border-bottom: 1px solid #8d8d8d;
+  background-color: #fffbef;
+  padding: 0 16px;
+  color: #161616;
+  transition: background-color 70ms cubic-bezier(.2,0,.38,.9),outline 70ms cubic-bezier(.2,0,.38,.9); 
+}
+
+input:focus{
+  outline: 1px solid #0f926d;
+  outline-offset: -1px;
+}
+
+.container {
+  display: grid;
+  box-sizing: border-box;
+  height: 100%;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
+  /* border: #0e4638 solid 1px; */
+  overflow: hidden;
+  padding: 20px;
+}
+
+.container > *:first-child {
+  grid-row: span 2;
+}
+
+.todolist-container {
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  gap: 10px;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 5px 20px 20px 20px;
+  overflow: hidden;
+  /* border: #0e4638 solid 1px; */
+}
+
+.todolist__field {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  gap: 20px;
+  align-items: center;
+  /* padding: 5px; */
+}
+
+.todolist__list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-color: rgba(5, 120, 86, 0.6) rgba(230, 255, 254, 0);
+  margin-right: 10px;
+  gap: 2px;
+  /* border: #0e4638 solid 1px; */
+}
+
+.todolist__item {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  gap: 10px;
+  /* border: #0e4638 solid 2px; */
+}
+
+.todolist_completed {
+  background: rgba(235, 249, 246, 0.4);
+  border-radius: 20px;
+}
