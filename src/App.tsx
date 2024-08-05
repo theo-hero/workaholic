@@ -2,6 +2,7 @@ import './App.css';
 import Container from './pages/container';
 import { TodoProvider } from './context/todoContext';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Login from './pages/login';
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
         <Router>
           <Routes>
             <Route path='/' element={<Container />}/>
-            <Route path='/check' element={<h1>Check complete!</h1>}/>
+            <Route path='/login' element={<Login />}/>
           </Routes>
         </Router>
       </TodoProvider>
