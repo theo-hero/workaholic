@@ -23,7 +23,7 @@ function Input() {
     
     return (
         <TodoProvider><div className="todolist__field">
-            <input placeholder="Что хочешь сделать?" onChange={ handleChange } onKeyDown={ handleKey }></input>
+            <input id="todo-input" placeholder="Что хочешь сделать?" onChange={ handleChange } onKeyDown={ handleKey } autoComplete="off"></input>
             <button onClick={ handleSubmit }>Добавить</button>
         </div></TodoProvider>
     );

@@ -1,8 +1,20 @@
+:root {
+  --text: #4d1f69;
+  --background: #fbfefa;
+  --primary: #b831fc;
+  --secondary: #35c289;
+  --accent: #56fe47;
+  --time-size: 80px;
+}
+
+html {
+  background: var(--background);
+}
+
 html, body {
-  background: none aquamarine;
+  z-index: -5;
   height: 100%;
-  color: #0e4638;
-  line-height: 130%;
+  color: var(--text);
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   scrollbar-gutter: stable both-edges;
   padding: 0px;
@@ -23,14 +35,16 @@ button {
   border: none;
   padding: 12px 17px;
   border-radius: 50px;
-  background-color: #2222220d;
+  background-color: #b831fc77;
   height: 50px;
   font-size: 16px;
   font-weight: 500;
 }
 
 button:hover {
-  background-color: #2222221a;
+  background-color: var(--primary);
+  box-shadow: 0 10px 30px -10px var(--secondary);
+  transition: .2s;
 }
 
 .button_round {
@@ -40,7 +54,7 @@ button:hover {
   padding: 0;
 }
 
-input {
+#todo-input {
   box-sizing: border-box;
   font-size: 100%;
   vertical-align: baseline;
@@ -49,14 +63,22 @@ input {
   letter-spacing: .16px;
   height: 40px;
   border: none;
-  border-bottom: 1px solid #8d8d8d;
-  background-color: #fffbef;
+  border-radius: 5px;
+  background-color: #ffeffe;
   padding: 0 16px;
   color: #161616;
   transition: background-color 70ms cubic-bezier(.2,0,.38,.9),outline 70ms cubic-bezier(.2,0,.38,.9); 
 }
 
-input:focus{
+input {
+  outline: none;
+}
+
+input::placeholder {
+  color: #650f9084;
+}
+
+todo-input:focus{
   outline: 1px solid #0f926d;
   outline-offset: -1px;
 }
@@ -64,17 +86,13 @@ input:focus{
 .container {
   display: grid;
   box-sizing: border-box;
-  height: 100%;
+  height: 100vh;
   grid-template-columns: repeat(2, 50%);
   grid-template-rows: 1fr 1fr;
   grid-gap: 10px;
   /* border: #0e4638 solid 1px; */
   overflow: hidden;
-  padding: 20px;
-}
-
-.container > *:first-child {
-  grid-row: span 2;
+  padding: 10px 40px 40px 10px;
 }
 
 .todolist-container {
@@ -102,7 +120,7 @@ input:focus{
   align-items: stretch;
   height: 100%;
   overflow-y: auto;
-  scrollbar-color: rgba(5, 120, 86, 0.6) rgba(230, 255, 254, 0);
+  scrollbar-color: var(--primary) ;
   margin-right: 10px;
   gap: 2px;
   /* border: #0e4638 solid 1px; */
@@ -117,6 +135,8 @@ input:focus{
 }
 
 .todolist_completed {
-  background: rgba(235, 249, 246, 0.4);
+  background-color: rgba(235, 249, 246, 0.4);
   border-radius: 20px;
+  background-image: radial-gradient(at 80% 91%, #b831fc2e 0px, transparent 40%);
+  box-shadow: inset 0 0 60px #b831fc2e;
 }

@@ -12,8 +12,13 @@ export interface ButtonProps {
 
 export interface ContextContainer {
     handleAdd?: (args: any[]) => void;
-    handleComplete?: (args: any[]) => void;
-    handleDelete?: (args: any[]) => void;
+    handleComplete: (args: any[]) => void;
+    handleDelete: (args: any[]) => void;
     newTasks?: string[];
     completedTasks?: string[];
+}
+
+export interface Input {
+    setNewTime: (number) => void;
+    start_stop: () => void;
 }
