@@ -2,7 +2,7 @@ import Input from "./input";
 import RoundButton from "./round_button";
 import { useTodoTools } from "../context/todoContext";
 import tick from "../assets/tick.png";
-import deleteButton from "../assets/delete-button.svg"
+import deleteButton from "../assets/delete.png"
 import { ListProps } from "../@types/todo";
 
 function List({ add, list, type }: ListProps) {

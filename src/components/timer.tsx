@@ -1,7 +1,6 @@
 import useTimer from "../hooks/usetimer";
 import { useState } from "react";
 import { InputField } from "./input_time";
-import "../styles/timer.css";
 
 export default function Timer() {
     const [timespan, setTimespan] = useState(600_000);
@@ -12,7 +11,7 @@ export default function Timer() {
     return (
         <div className="timer">
             <div className="timer__numbers">
-                <span id="time">{hours}:{niceLook(minutes)}:{niceLook(seconds)}</span>
+                <span id="time">{niceLook(hours)}:{niceLook(minutes)}:{niceLook(seconds)}</span>
                 <InputField setNewTime={setTimespan} start_stop={start_stop} />
             </div>
             <div className="buttons">

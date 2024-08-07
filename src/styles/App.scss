@@ -1,0 +1,19 @@
+$primary: #b831fc;
+$secondary: #35c289;
+$accent: #56fe47;
+$text: #4d1f69;
+$background: #fbfefa;
+$time-size: 80px;
+
+:root {
+  --background: #{$background};
+  --secondary: #{$secondary};
+  --accent: #{$accent};
+  --text: #{$text};
+  --primary: #{$primary};
+  --time-size: #{$time-size};
+}
+
+@import "__global.scss";
+
+@import "_timer.scss", "_todo.scss", "_burger.scss";

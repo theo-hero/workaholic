@@ -6,27 +6,31 @@
     flex-direction: column;
     gap: 10px;
 
-    .timer__numbers {
+    &__numbers {
         position: relative;
+
         #time {
-            font-size: var(--time-size);
+            font-size: #{$time-size};
         }
+
         .timer__input {
             position: absolute;
             top: 0;
             display: grid;
-            grid-template-columns: 1fr 2fr 2fr;
+            grid-template-columns: 1fr 1fr 1fr;
             column-gap: 20px;
             width: 100%;
             height: 100%;
+
             input {
                 text-align: right;
                 min-width: 10px;
                 height: 100%;
                 background-color: transparent;
-                font-size: var(--time-size);
+                font-size: #{$time-size};
                 border: none;
             }
+
             input:focus {
                 background-color: #f5e2ff0f;
                 backdrop-filter: blur(4px);
@@ -34,6 +38,7 @@
                 /* border: #34024e9a solid 1px; */
             }
         }
+
         span:has(+ .timer__input:focus-within) {
             color: rgba(74, 4, 87, 0.2);
         }
@@ -45,7 +50,7 @@
         width: 370px;
         height: 370px;
         border-radius: 50%;
-        background-color: var(--background);
+        background-color: #{$background};
     }
 
     #circle__sector {
@@ -54,6 +59,6 @@
         width: 400px;
         height: 400px;
         border-radius: 50%;
-        background: conic-gradient(var(--secondary) 360deg, var(--background) 360deg 360deg);
+        background: conic-gradient(#{$secondary} 360deg, #{$background} 360deg 360deg);
     }
 }

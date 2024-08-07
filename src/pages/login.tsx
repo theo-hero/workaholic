@@ -1,8 +1,7 @@
 import { auth, provider } from '../config/firebase';
-import { signInWithPopup } from 'firebase/auth';
+import { signInWithPopup, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -14,10 +13,9 @@ export default function Login() {
     }
 
     return (
-        <>
-            <button onClick={signIn}>Login with google</button>
-            <p>{user?.displayName}</p>
-            <Link to='/'>Вернуться на домашнюю страницу</Link>
-        </>
+        <div className='login'>
+            {!user && <button onClick={signIn}>Войти через Google</button>}
+            {user && <><p>{`Добро пожаловать, ${user?.displayName}`}</p><button onClick={() => signOut(auth)}>Выйти</button></>}
+        </div>
     )
 }
