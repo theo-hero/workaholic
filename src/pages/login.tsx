@@ -1,11 +1,10 @@
 import { auth, provider } from '../config/firebase';
-import { signInWithPopup, signOut } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import History from './history';
 
 export default function Login() {
     const navigate = useNavigate();
-    const [user] = useAuthState(auth);
 
     const signIn = async () => {
         await signInWithPopup(auth, provider);
@@ -14,8 +13,8 @@ export default function Login() {
 
     return (
         <div className='login'>
-            {!user && <button onClick={signIn}>Войти через Google</button>}
-            {user && <><p>{`Добро пожаловать, ${user?.displayName}`}</p><button onClick={() => signOut(auth)}>Выйти</button></>}
+            <button onClick={signIn}>Войти через Google</button>
+            <History />
         </div>
     )
 }

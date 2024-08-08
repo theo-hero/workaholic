@@ -1,3 +1,5 @@
+@use "__mixins.scss" as *;
+
 html {
   background: #{$background};
 
@@ -46,10 +48,9 @@ button {
   }
 }
 
-.login {
-  display: flex;
-  height: 100vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.login, .account {
+  @include vertical-flex(center, 100vh);
+  form {
+    @include vertical-flex();
+  }
 }

@@ -1,0 +1,22 @@
+@use "__mixins.scss" as *;
+
+.intervals {
+    @include vertical-flex(stretch);
+    width: 80vh;
+
+    &__interval {
+        background-color: #{$primary}2e;
+        border-radius: 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 10px 10px 30px;
+        gap: 10px;
+        .duration {
+            width: 50px;
+        }
+        button {
+            margin-left: auto;
+        }
+    }
+}

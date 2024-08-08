@@ -9,34 +9,29 @@ export function InputField({ setNewTime }: Input) {
     const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
 
     const handleEnterPress = () => {
-        // Directly read values from DOM elements
         const hoursValue = inputsRef.current[0]?.value || '0';
         const minutesValue = inputsRef.current[1]?.value || '0';
         const secondsValue = inputsRef.current[2]?.value || '0';
-    
+
         const totalSeconds = parseInt(hoursValue) * HOUR +
-                             parseInt(minutesValue) * MINUTE +
-                             parseInt(secondsValue) * SECOND;
+            parseInt(minutesValue) * MINUTE +
+            parseInt(secondsValue) * SECOND;
         setNewTime(totalSeconds);
-    
-        // Clear inputs after submission
+
         inputsRef.current.forEach(input => input && (input.value = ''));
-    
-        // Remove focus from the currently focused input
-        // Assert document.activeElement is an HTMLElement to satisfy TypeScript
+
         const activeElement = document.activeElement as HTMLElement | null;
         activeElement?.blur();
     };
-    
+
 
     const handleKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             handleEnterPress();
-            event.preventDefault(); // Prevent form submission behavior
+            event.preventDefault();
             return;
         }
 
-        // Handle navigation with Arrow keys
         const currentIndex = inputsRef.current.findIndex(input => input === event.currentTarget);
         if (event.key === 'ArrowLeft' && currentIndex > 0) {
             inputsRef.current[currentIndex - 1]?.focus();

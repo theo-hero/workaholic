@@ -11,13 +11,13 @@ function Input() {
 
     function handleSubmit() {
         if (newText && handleAdd) {
-            handleAdd([newText]);
+            handleAdd([{text: newText}]);
         }
     }
 
     function handleKey(event: any) {
         if (event.key === "Enter" && newText && handleAdd) {
-            handleAdd([newText]);
+            handleAdd([{text: newText}]);
         }
     }
     

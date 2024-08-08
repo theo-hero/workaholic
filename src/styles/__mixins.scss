@@ -1,0 +1,9 @@
+@mixin vertical-flex($align: center, $height: auto) {
+    display: flex;
+    height: $height;
+    flex-direction: column;
+    gap: 1vh;
+    align-items: $align;
+    justify-content: $align;
+  }
+  

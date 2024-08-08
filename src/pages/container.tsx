@@ -1,16 +1,14 @@
-import List from "../components/todolist"
 import Timer from "../components/timer";
-import { useTodoTools } from "../context/todoContext";
+import ListNew from "../components/listNew";
+import ListCompleted from "../components/listCompleted";
 
 function Container() {
-    const { newTasks, completedTasks } = useTodoTools();
-
     return (
         <>
             <div className='page-content'>
                 <Timer />
-                <List add={true} list={newTasks} type='todolist_new' />
-                <List add={false} list={completedTasks} type='todolist_completed' />
+                <ListNew />
+                <ListCompleted />
             </div>
         </>
     )

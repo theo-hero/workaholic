@@ -10,15 +10,26 @@ export interface ButtonProps {
     args: any[];
 }
 
-export interface ContextContainer {
+export interface ContextTodoTypes {
     handleAdd?: (args: any[]) => void;
     handleComplete: (args: any[]) => void;
     handleDelete: (args: any[]) => void;
-    newTasks?: string[];
-    completedTasks?: string[];
+    newTasks?: List[];
+    completedTasks?: List[];
+}
+
+export interface ContextData {
+    setObjects: (ref: CollectionReference, setValue: (args: any) => void) => void;
+    deleteEntry: (id: string, collection_name: string) => void;
+    addToDatabase: (entry: List, ref: CollectionReference) => void;
 }
 
 export interface Input {
     setNewTime: (number) => void;
     start_stop: () => void;
+}
+
+export interface List {
+    text: string;
+    taskID: SymbolConstructor;
 }
