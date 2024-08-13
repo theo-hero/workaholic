@@ -1,35 +1,51 @@
+import { CollectionReference } from "firebase/firestore";
+
 export interface ListProps {
     add?: boolean;
     list?: string[];
     type?: string;
 }
 
+type addToList = (task: List) => void;
+type moveToCompleted = (task: List, key: number) => void;
+type deleteFromCompleted = (key: number) => void;
+
 export interface ButtonProps {
-    whenClicked: (args: any[]) => void;
+    whenClicked: addToList | moveToCompleted | deleteFromCompleted;
     image: string;
-    args: any[];
+    task?: List;
+    key?: number;
 }
 
 export interface ContextTodoTypes {
-    handleAdd?: (args: any[]) => void;
-    handleComplete: (args: any[]) => void;
-    handleDelete: (args: any[]) => void;
+    addToList: addToList;
+    moveToCompleted: moveToCompleted;
+    deleteFromCompleted: deleteFromCompleted;
     newTasks?: List[];
     completedTasks?: List[];
+    setNewTasks?: Dispatch<SetStateAction<List[]>>;
+    setCompletedTasks?: Dispatch<SetStateAction<List[]>>;
 }
 
 export interface ContextData {
-    setObjects: (ref: CollectionReference, setValue: (args: any) => void) => void;
+    fetchObjects: (ref: CollectionReference, setValue: (args: any) => void) => void;
     deleteEntry: (id: string, collection_name: string) => void;
     addToDatabase: (entry: List, ref: CollectionReference) => void;
+    generateID: () => string;
+    newRef: CollectionReference;
+    completedRef: CollectionReference;
 }
 
-export interface Input {
+export interface Input_time {
     setNewTime: (number) => void;
     start_stop: () => void;
 }
 
 export interface List {
     text: string;
-    taskID: SymbolConstructor;
+    taskID: string;
+}
+
+export interface Input {
+    dataRef: CollectionReference;
 }

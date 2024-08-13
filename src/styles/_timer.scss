@@ -23,6 +23,7 @@
             height: 100%;
 
             input {
+                color: transparent;
                 text-align: right;
                 min-width: 10px;
                 height: 100%;
@@ -32,10 +33,13 @@
             }
 
             input:focus {
-                background-color: #f5e2ff0f;
-                backdrop-filter: blur(4px);
                 outline: none;
                 /* border: #34024e9a solid 1px; */
+            }
+            &:focus-within > input {
+                color: #{$text};
+                background-color: #f5e2ff0f;
+                backdrop-filter: blur(15px);
             }
         }
 

@@ -1,11 +1,11 @@
 import React, { useRef, useEffect } from "react";
-import { Input } from "../@types/todo";
+import { Input_time } from "../@types/todo";
 
 const SECOND = 1000;
 const MINUTE = SECOND * 60;
 const HOUR = MINUTE * 60;
 
-export function InputField({ setNewTime }: Input) {
+export function InputField({ setNewTime }: Input_time) {
     const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
 
     const handleEnterPress = () => {
@@ -49,10 +49,10 @@ export function InputField({ setNewTime }: Input) {
     }, []);
 
     return (
-        <div className='timer__input'>
-            <input id="hours" ref={el => el && (inputsRef.current[0] = el)} onKeyDown={handleKey} />
-            <input id="minutes" ref={el => el && (inputsRef.current[1] = el)} onKeyDown={handleKey} />
-            <input id="seconds" ref={el => el && (inputsRef.current[2] = el)} onKeyDown={handleKey} />
-        </div>
+        <form className='timer__input'>
+            <input id="hours" ref={el => el && (inputsRef.current[0] = el)} onKeyDown={handleKey} autoComplete="off" />
+            <input id="minutes" ref={el => el && (inputsRef.current[1] = el)} onKeyDown={handleKey} autoComplete="off" />
+            <input id="seconds" ref={el => el && (inputsRef.current[2] = el)} onKeyDown={handleKey} autoComplete="off" />
+        </form>
     );
 }
