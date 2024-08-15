@@ -1,6 +1,5 @@
 import React, { useContext, useState, createContext } from 'react';
 import { ContextTodoTypes, List } from '../@types/todo';
-import { useDataTools } from './databaseContext';
 
 const TodoContext = createContext<ContextTodoTypes | undefined>(undefined);
 
@@ -9,7 +8,7 @@ export function TodoProvider({ children }: { children: React.ReactNode }) {
     const [completedTasks, setCompletedTasks] = useState<List[]>([]);
 
     function addToList(task: List) {
-        setNewTasks(prev => [...prev, task]);
+        setNewTasks(prev => [task, ...prev]);
     }
 
     function moveToCompleted(task: List, key: number) {
@@ -27,8 +26,15 @@ export function TodoProvider({ children }: { children: React.ReactNode }) {
         ]);
     }
 
+    function deleteFromNew(key: number) {
+        setNewTasks(prev => [
+            ...prev.slice(0, key),
+            ...prev.slice(key + 1)
+        ]);
+    }
+
     return (
-        <TodoContext.Provider value={{ addToList, moveToCompleted, deleteFromCompleted, newTasks, completedTasks, setNewTasks, setCompletedTasks }}>
+        <TodoContext.Provider value={{ addToList, moveToCompleted, deleteFromCompleted, newTasks, completedTasks, setNewTasks, setCompletedTasks, deleteFromNew }}>
             {children}
         </TodoContext.Provider>
     );

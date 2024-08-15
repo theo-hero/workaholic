@@ -48,6 +48,11 @@
         }
     }
 
+    .buttons {
+        display: flex;
+        gap: 10px;
+    }
+
     #circle__inner {
         position: absolute;
         z-index: -1;

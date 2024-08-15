@@ -10,6 +10,7 @@ const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 
 const intervalsRef = collection(database, "intervals");
+const audio = new Audio("../gong-signal.wav");
 
 async function addToDatabase(entry: Interval) {
   await addDoc(intervalsRef, {
@@ -23,21 +24,24 @@ export default function useTimer(timespan: number, interval = SECOND) {
   const [timerOn, setTimerOn] = useState(false);
 
   function onExpire() {
-    if ((timeLeft / SECOND) < 2) {
+    if ((timeLeft / SECOND) < 1) {
       setTimerOn(false);
+      audio.play();
       addToDatabase({
-        duration: (timespan - timeLeft) / SECOND + 1,
-        task: "NEW"
+        duration: (timespan - timeLeft) / SECOND,
+        task: "Дело сделано"
       });
+      return 1;
     }
+    return 0;
   }
 
   useEffect(() => {
-    if (!timerOn) { return }
+    if (!timerOn || timespan < SECOND) { return }
 
     const intervalId = setInterval(() => {
+      if (onExpire()) { return };
       setTimeLeft((_timespan) => _timespan - interval);
-      onExpire();
     }, interval);
 
     return () => {

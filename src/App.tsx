@@ -10,7 +10,7 @@ import Account from './pages/my-account';
 function App() {
 
   return (
-    <body>
+    <main>
       <DataProvider><TodoProvider>
         <Router>
           <Navbar />
@@ -21,7 +21,7 @@ function App() {
           </Routes>
         </Router>
       </TodoProvider></DataProvider>
-    </body>
+    </main>
   );
 }
 

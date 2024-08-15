@@ -21,6 +21,7 @@ export interface ContextTodoTypes {
     addToList: addToList;
     moveToCompleted: moveToCompleted;
     deleteFromCompleted: deleteFromCompleted;
+    deleteFromNew: deleteFromCompleted;
     newTasks?: List[];
     completedTasks?: List[];
     setNewTasks?: Dispatch<SetStateAction<List[]>>;
@@ -44,6 +45,8 @@ export interface Input_time {
 export interface List {
     text: string;
     taskID: string;
+    focused?: boolean;
+    archived?: boolean;
 }
 
 export interface Input {

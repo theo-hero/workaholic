@@ -3,7 +3,7 @@ import { useTodoTools, TodoProvider } from "../context/todoContext";
 import { useDataTools } from "../context/databaseContext";
 import { Input as InputType } from "../@types/todo";
 
-function Input({dataRef}: InputType) {
+function Input({ dataRef }: InputType) {
     const { addToList } = useTodoTools();
     const { addToDatabase, generateID } = useDataTools();
     const [newText, setNewText] = useState('');
@@ -13,9 +13,12 @@ function Input({dataRef}: InputType) {
             let newEntry = {
                 text: newText,
                 taskID: generateID(),
+                focused: false,
+                archived: false,
             };
             addToList(newEntry);
             addToDatabase(newEntry, dataRef);
+            setNewText('');
         }
     }
 
@@ -28,11 +31,11 @@ function Input({dataRef}: InputType) {
             doOnSubmit();
         }
     }
-    
+
     return (
         <TodoProvider><div className="todolist__field">
-            <input id="todo-input" placeholder="Что хочешь сделать?" onChange={ handleChange } onKeyDown={ handleKey } autoComplete="off"></input>
-            <button onClick={ doOnSubmit }>Добавить</button>
+            <input id="todo-input" placeholder="Что хочешь сделать?" onChange={handleChange} onKeyDown={handleKey} value={newText} autoComplete="off"></input>
+            <button onClick={doOnSubmit}>Добавить</button>
         </div></TodoProvider>
     );
 }

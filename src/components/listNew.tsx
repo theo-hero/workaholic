@@ -4,29 +4,49 @@ import tick from "../assets/tick.png";
 import { List } from "../@types/todo";
 import { useDataTools } from "../context/databaseContext";
 import { useEffect } from "react";
+import { ReactComponent as Rubbish } from "../assets/rubbish-bin.svg";
+import { doc, updateDoc } from "firebase/firestore";
+import { database } from "../config/firebase";
 
 function ListNew() {
-    const { newTasks, moveToCompleted, setNewTasks } = useTodoTools();
+    const { newTasks, moveToCompleted, setNewTasks, deleteFromNew } = useTodoTools();
     const { addToDatabase, deleteEntry, fetchObjects, newRef, completedRef } = useDataTools();
 
     useEffect(() => {
         fetchObjects(newRef, setNewTasks);
     }, []);
 
-    const doOnClick = (task: List, key: number) => {
+    const moveEntry = (task: List, key: number) => {
         moveToCompleted(task, key);
         addToDatabase(task, completedRef);
         deleteEntry(task.taskID, "new-tasks");
     }
 
+    const deleteNewTask = (task: List, key: number) => {
+        deleteFromNew(key);
+        deleteEntry(task.taskID, "new-tasks");
+    }
+
+    const highlightTask = async (task: List, key: number) => {
+        setNewTasks((prev: List[]) => [
+            ...prev.slice(0, key),
+            { ...task, focused: !task.focused },
+            ...prev.slice(key + 1)
+        ]);
+        await updateDoc(doc(database, "new-tasks", task.taskID), { focused: true });
+    };
+
     const processArray = (list: List[]) => {
         return (list && list.map((task, key) => {
             return (
-                <div className='todolist__item' key={key}>
-                    <button onClick={() => doOnClick(task, key)} className="button-round" >
+                <div className={`todolist__item ${task.focused ? 'todolist__item_focused' : ''}`} key={key} >
+                    <button onClick={() => moveEntry(task, key)} className="button-round" >
                         <img src={tick} alt="X" />
                     </button>
-                    <div>{task.text}</div>
+                    <div onClick={() => highlightTask(task, key)}>{task.text}</div>
+                    <button onClick={() => deleteNewTask(task, key)} className="button-round todolist__item__delete-button">
+                        <Rubbish />
+                    </button>
                 </div>
             )
         }));
