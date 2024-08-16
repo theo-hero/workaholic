@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import { addDoc, collection } from 'firebase/firestore';
 import { database } from '../config/firebase';
-import { Interval } from "../@types/intervals";
+import { Interval, TimerProps } from "../@types/intervals";
 
 const SECOND = 1_000;
 const MINUTE = SECOND * 60;
@@ -14,12 +14,11 @@ const audio = new Audio("../gong-signal.wav");
 
 async function addToDatabase(entry: Interval) {
   await addDoc(intervalsRef, {
-    duration: entry.duration,
-    task: entry.task,
+    ...entry
   })
 }
 
-export default function useTimer(timespan: number, interval = SECOND) {
+export default function useTimer({timespan, tasks, interval = SECOND}: TimerProps) {
   const [timeLeft, setTimeLeft] = useState(timespan);
   const [timerOn, setTimerOn] = useState(false);
 
@@ -27,9 +26,10 @@ export default function useTimer(timespan: number, interval = SECOND) {
     if ((timeLeft / SECOND) < 1) {
       setTimerOn(false);
       audio.play();
+      console.log(tasks ? tasks.filter((task) => task.focused).map((task) => task.text).join('\n') : "Дело сделано");
       addToDatabase({
         duration: (timespan - timeLeft) / SECOND,
-        task: "Дело сделано"
+        task: tasks ? tasks.filter((task) => task.focused).map((task) => task.text).join('\n') : "Дело сделано",
       });
       return 1;
     }

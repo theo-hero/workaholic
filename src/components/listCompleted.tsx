@@ -53,7 +53,8 @@ function ListCompleted() {
     return (
         <div className='todolist-container todolist_completed'>
             <span>
-                <h1 onClick={() => setShowArchived(false)} className={`${showArchived && 'inactive'}`}>Выполнено</h1> /
+                <h1 onClick={() => setShowArchived(false)} className={`${showArchived && 'inactive'}`}>Выполнено</h1> 
+                <h1>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;</h1>
                 <h1 onClick={() => setShowArchived(true)} className={`${!showArchived && 'inactive'}`}>Архив</h1>
             </span>
             <div className='todolist__list'>

@@ -1,10 +1,12 @@
 import useTimer from "../hooks/usetimer";
 import { useState } from "react";
 import { InputField } from "./input_time";
+import { useTodoTools } from "../context/todoContext";
 
 export default function Timer() {
     const [timespan, setTimespan] = useState(600_000);
-    const { hours, minutes, seconds, start_stop, restart, degrees, timerOn } = useTimer(timespan);
+    const {newTasks} = useTodoTools();
+    const { hours, minutes, seconds, start_stop, restart, degrees, timerOn } = useTimer({timespan: timespan, tasks: newTasks});
 
     let niceLook = (number: number) => number.toString().padStart(2, '0');
 

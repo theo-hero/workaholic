@@ -12,10 +12,16 @@ export default function History() {
         handleHistory();
     }
 
+    const processDuration = (time: number) => {
+        if (time > 359) { return Math.round(time / 360) + ":" + Math.round(time / 60).toString().padStart(2, '0') + ":" + (time % 60).toString().padStart(2, '0')}
+        if (time > 59) { return Math.round(time / 60) + ":" + (time % 60).toString().padStart(2, '0') }
+        return time + ' с';
+    }
+
     const processEntries = (data: Interval) => {
             return <div className="intervals__interval">
-                <div className="duration">{data.duration}</div>
-                <div>{data.task || "something"}</div>
+                <div className="duration">{processDuration(data.duration)}</div>
+                <p>{data.task}</p>
                 <button className="button-round" onClick={() => handleDelete(data.id || "")}>X</button>
             </div>
     }
