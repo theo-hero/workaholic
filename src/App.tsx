@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Login from './pages/login';
 import Navbar from './components/navbar';
 import Account from './pages/my-account';
+import Test from './pages/test';
+
 
 function App() {
 
@@ -18,6 +20,7 @@ function App() {
             <Route path='/' element={<Container />}/>
             <Route path='/login' element={<Login />}/>
             <Route path='/account' element={<Account />}/>
+            <Route path='/test' element={<Test />}/>
           </Routes>
         </Router>
       </TodoProvider></DataProvider>

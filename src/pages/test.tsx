@@ -1,13 +1,17 @@
-import useTimer from "../hooks/usetimer2";
+import useTimer from "../hooks/usetimertest";
 
 const Test = () => {
-    const {start, timer, countdown} = useTimer(10_000);
+    const {start, stop, pause, resume, seconds, minutes, timerOn} = useTimer(30_000);
 
     return (
         <>
             <button onClick={start}>start</button>
-            <div>{timer}</div>
-            <div>{countdown}</div>
+            <button onClick={stop}>stop</button>
+            <button onClick={pause}>pause</button>
+            <button onClick={resume}>resume</button>
+            <div>{seconds}</div>
+            <div>{minutes}</div>
+            <div>{timerOn ? "yes" : "no"}</div>
         </>
     );
 };

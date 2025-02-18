@@ -24,6 +24,7 @@ button {
   height: 50px;
   font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
 
   img {
     max-width: 50%;
@@ -43,6 +44,17 @@ button {
     padding: 0;
     aspect-ratio: 1/1;
   }
+}
+
+.page-content {
+  display: grid;
+  box-sizing: border-box;
+  height: 100vh;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
+  overflow: hidden;
+  padding: 10px 40px 40px 10px;
 }
 
 .login,

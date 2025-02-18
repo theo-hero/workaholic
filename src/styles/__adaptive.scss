@@ -1,0 +1,14 @@
+@use "__mixins.scss" as *;
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 200vh;
+    grid-template-rows: 2fr 1fr 1fr;
+}
+
+.timer {
+    border: #1c1c1c solid 2px;
+    height: 100vh;
+}

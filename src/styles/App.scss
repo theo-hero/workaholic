@@ -16,4 +16,13 @@ $time-size: 80px;
 
 @import "__global.scss";
 
-@import "_timer.scss", "_todo.scss", "_burger.scss", "_intervals.scss";
+@import "_todo.scss", "_burger.scss", "_intervals.scss";
+
+@media (min-width: 950px) {
+  @import "_timer.scss";
+}
+
+@media (max-width: 900px) {
+  @import "__adaptive.scss";
+}
+

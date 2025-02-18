@@ -21,6 +21,7 @@ async function addToDatabase(entry: Interval) {
 export default function useTimer({timespan, tasks, interval = SECOND}: TimerProps) {
   const [timeLeft, setTimeLeft] = useState(timespan);
   const [timerOn, setTimerOn] = useState(false);
+  const [finishTime, setFinishTime] = useState(0);
 
   function onExpire() {
     if ((timeLeft / SECOND) < 1) {
@@ -42,6 +43,7 @@ export default function useTimer({timespan, tasks, interval = SECOND}: TimerProp
     const intervalId = setInterval(() => {
       if (onExpire()) { return };
       setTimeLeft((_timespan) => _timespan - interval);
+      if (timeLeft % 10000 < 1000) { setTimeLeft(finishTime - Date.now()) }
     }, interval);
 
     return () => {
@@ -52,6 +54,10 @@ export default function useTimer({timespan, tasks, interval = SECOND}: TimerProp
   useEffect(() => {
     setTimeLeft(timespan);
   }, [timespan]);
+
+  useEffect(() => {
+    setFinishTime(Date.now() + timespan);
+  }, [timerOn, timespan]);
 
   return {
     days: Math.floor(timeLeft / DAY),

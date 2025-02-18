@@ -34,6 +34,8 @@ export default function useTimer(timespan: number) {
   return {
     start,
     countdown: Math.ceil(timeLeft / SECOND), // ceil, потому что порой возвращает отрицательные значения (??)
-    timer: Math.ceil((timespan - timeLeft) / SECOND),
+    timer: Math.ceil((timespan - timeLeft) / SECOND), 
   };
 }
+
+// hours, minutes, seconds, start_stop, restart, degrees, timerOn

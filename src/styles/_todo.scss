@@ -27,17 +27,6 @@ input {
     outline: none;
 }
 
-.page-content {
-    display: grid;
-    box-sizing: border-box;
-    height: 100vh;
-    grid-template-columns: repeat(2, 50%);
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 10px;
-    overflow: hidden;
-    padding: 10px 40px 40px 10px;
-}
-
 .todolist {
     &-container {
         display: grid;
@@ -113,6 +102,7 @@ input {
             font-size: 140%;
             padding: 15px 0 0;
             margin: 0;
+            cursor: pointer;
 
             &.inactive {
                 color: #{$text}5e;

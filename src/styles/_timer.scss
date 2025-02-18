@@ -5,6 +5,7 @@
     justify-content: center;
     flex-direction: column;
     gap: 10px;
+    //height: clamp(50%, 300px, 100%);
 
     &__numbers {
         position: relative;
@@ -56,8 +57,8 @@
     #circle__inner {
         position: absolute;
         z-index: -1;
-        width: 370px;
-        height: 370px;
+        height: 47vh;
+        aspect-ratio: 1 /1;
         border-radius: 50%;
         background-color: #{$background};
     }
@@ -65,8 +66,8 @@
     #circle__sector {
         position: absolute;
         z-index: -2;
-        width: 400px;
-        height: 400px;
+        height: 50vh;
+        aspect-ratio: 1 /1;
         border-radius: 50%;
         background: conic-gradient(#{$secondary} 360deg, #{$background} 360deg 360deg);
     }
